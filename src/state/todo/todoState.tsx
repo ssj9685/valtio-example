@@ -12,7 +12,7 @@ export class TodoState {
     this.todos = todos;
   }
 
-  addTodo(params: { title: string; completed: boolean }) {
+  add(params: { title: string; completed: boolean }) {
     const { title, completed } = params;
 
     if (!title) {
@@ -23,12 +23,12 @@ export class TodoState {
     this.todos.set(id, { id, title, completed });
   }
 
-  removeTodo(params: { id: string }) {
+  remove(params: { id: string }) {
     const { id } = params;
     this.todos.delete(id);
   }
 
-  toggleTodo(params: { id: string }) {
+  toggle(params: { id: string }) {
     const { id } = params;
 
     const todo = this.todos.get(id);

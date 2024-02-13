@@ -1,26 +1,23 @@
 import { globalTodoProxy } from "@/state/todo/todoState";
 import TodoFilter from "./TodoFilter";
 import TodoItem from "./TodoItem";
-import { useSnapshot } from "valtio";
-import { useTodoFilter } from "@/hooks/todo/useTodoFilter";
+import { useFilteredTodos } from "@/hooks/todo/useTodoFilter";
 import { FormEvent } from "react";
 
 function TodoList() {
-  const { todos } = useSnapshot(globalTodoProxy);
-
-  const filteredTodos = useTodoFilter({ todos });
+  const filteredTodos = useFilteredTodos();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const title = e.currentTarget["title-input"].value;
+    const titleInput = e.currentTarget["title-input"];
 
-    e.currentTarget["title-input"].value = "";
-
-    globalTodoProxy.addTodo({
-      title,
+    globalTodoProxy.add({
+      title: titleInput.value,
       completed: false,
     });
+
+    titleInput.value = "";
   };
 
   return (

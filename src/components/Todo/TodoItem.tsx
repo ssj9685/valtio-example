@@ -9,12 +9,12 @@ function TodoItem(props: { todo: Todo }) {
       <input
         type="checkbox"
         checked={completed}
-        onChange={() => globalTodoProxy.toggleTodo({ id })}
+        onChange={() => globalTodoProxy.toggle({ id })}
       />
       <span style={{ textDecoration: completed ? "line-through" : "" }}>
         {title}
       </span>
-      <button onClick={() => globalTodoProxy.removeTodo({ id })}>x</button>
+      <button onClick={() => globalTodoProxy.remove({ id })}>x</button>
     </div>
   );
 }

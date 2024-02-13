@@ -1,23 +1,19 @@
 import { useSnapshot } from "valtio";
-import { FILTER, Todo } from "../../types/todo/todoType";
+import { FILTER } from "@/types/todo/todoType";
 import { globalTodoProxy } from "@/state/todo/todoState";
 
-export function useTodoFilter(params: { todos: Map<string, Todo> }) {
-  const { todos } = params;
+export function useFilteredTodos() {
+  const { todos, filter } = useSnapshot(globalTodoProxy);
 
-  const todoSnapshot = useSnapshot(globalTodoProxy);
-
-  const { filter } = todoSnapshot;
-
-  const todosArray = [...todos.values()];
+  const todoArray = [...todos.values()];
 
   if (filter === FILTER.all) {
-    return todosArray;
+    return todoArray;
   }
 
   if (filter === FILTER.completed) {
-    return todosArray.filter((todo) => todo.completed);
+    return todoArray.filter((todo) => todo.completed);
   }
 
-  return todosArray.filter((todo) => !todo.completed);
+  return todoArray.filter((todo) => !todo.completed);
 }
