@@ -1,5 +1,5 @@
 import { useSnapshot } from "valtio";
-import { Todo } from "../../types/todo/todoType";
+import { FILTER, Todo } from "../../types/todo/todoType";
 import { globalTodoProxy } from "@/state/todo/todoState";
 
 export function useTodoFilter(params: { todos: Map<string, Todo> }) {
@@ -11,11 +11,11 @@ export function useTodoFilter(params: { todos: Map<string, Todo> }) {
   
     const todosArray = [...todos.values()];
   
-    if (filter === "all") {
+    if (filter === FILTER.all) {
       return todosArray;
     }
   
-    if (filter === "completed") {
+    if (filter === FILTER.completed) {
       return todosArray.filter((todo) => todo.completed);
     }
   
