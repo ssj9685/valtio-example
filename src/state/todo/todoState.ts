@@ -20,7 +20,11 @@ export class TodoState {
     }
 
     const id = crypto.randomUUID();
-    this.todos.set(id, { id, title, completed });
+    const todo = { id, title, completed };
+
+    this.todos.set(id, todo);
+
+    return todo;
   }
 
   remove(params: { id: string }) {
